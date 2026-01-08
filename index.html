@@ -1,89 +1,503 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light" />
-  <title>PR Collects</title>
-  <meta name="description" content="PR Collects helps brands collect AR faster by emailing secure pay-by-link invoices and tracking payment status end-to-end." />
-  <link rel="stylesheet" href="/style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>PR Collects</title>
+<meta content="PR Collects helps brands collect AR faster by emailing secure pay-by-link invoices and tracking payment status end-to-end." name="description"/>
+<link href="/style.css" rel="stylesheet"/>
+<!-- Home-only styling. Terms & Privacy remain untouched. -->
+<style>
+    /* Page-level tweaks scoped to the Home page only */
+    body.home{
+      background:#ffffff;
+    }
+    body.home .container{
+      max-width:1080px;
+      padding-top:18px;
+    }
+
+    /* Make the header lighter / less “card-like” on Home only */
+    body.home .topbar{
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      padding:10px 4px;
+      margin-bottom:18px;
+    }
+    body.home .nav a{
+      border:none;
+      background:transparent;
+      padding:8px 10px;
+    }
+    body.home .nav a:hover{
+      background:rgba(2,6,23,.04);
+    }
+    body.home .nav a.active{
+      background:rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.18);
+    }
+
+    /* Main layout */
+    .home-main{
+      display:flex;
+      flex-direction:column;
+      gap:26px;
+    }
+
+    /* Hero */
+    .home-hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, #ffffff, #f8fafc);
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+    .home-hero::before{
+      content:"";
+      position:absolute;
+      inset:-200px -200px auto auto;
+      width:560px;
+      height:560px;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.18), transparent 60%),
+                 radial-gradient(circle at 65% 55%, rgba(16,185,129,.14), transparent 62%);
+      transform:rotate(12deg);
+      pointer-events:none;
+    }
+    .home-hero::after{
+      content:"";
+      position:absolute;
+      left:-220px;
+      bottom:-240px;
+      width:520px;
+      height:520px;
+      background:radial-gradient(circle at 55% 45%, rgba(37,99,235,.08), transparent 62%);
+      pointer-events:none;
+    }
+
+    .home-hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:center;
+      z-index:1;
+    }
+    @media (max-width: 860px){
+      .home-hero{ padding:22px; }
+      .home-hero-grid{ grid-template-columns:1fr; }
+    }
+
+    .home-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 12px;
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .home-eyebrow .dot{
+      width:8px;height:8px;border-radius:999px;
+      background:linear-gradient(135deg, var(--blue), var(--green));
+      box-shadow:0 8px 18px rgba(37,99,235,.18);
+    }
+
+    .home-hero h1{
+      margin:0 0 12px;
+      font-size:clamp(34px, 4.6vw, 54px);
+      letter-spacing:-.8px;
+      line-height:1.05;
+      color:var(--text);
+    }
+    .home-sub{
+      margin:0;
+      color:var(--muted2);
+      max-width:64ch;
+      font-size:17px;
+    }
+
+    .home-actions{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .home-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#ffffff;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:800;
+      font-size:14px;
+      box-shadow:0 10px 24px rgba(2,6,23,.06);
+    }
+    .home-btn:hover{ text-decoration:none; transform:translateY(-1px); }
+    @media (prefers-reduced-motion: reduce){
+      .home-btn:hover{ transform:none; }
+    }
+
+    .home-btn.primary{
+      background:var(--blue);
+      border-color:rgba(37,99,235,.18);
+      color:#fff;
+      box-shadow:0 14px 30px rgba(37,99,235,.22);
+    }
+    .home-btn.primary:hover{ background:var(--blue2); }
+
+    .home-btn.ghost{
+      background:rgba(255,255,255,.70);
+      box-shadow:none;
+    }
+
+    .home-checklist{
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+      max-width:64ch;
+    }
+    .home-checklist li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:var(--muted2);
+      font-size:14px;
+    }
+    .home-check{
+      width:22px;height:22px;
+      display:inline-grid;
+      place-items:center;
+      border-radius:8px;
+      border:1px solid rgba(16,185,129,.22);
+      background:rgba(16,185,129,.08);
+      color:#065f46;
+      font-weight:900;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    /* Right panel */
+    .home-panel{
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:var(--shadow-sm);
+    }
+    .home-panel-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .home-panel-title{
+      font-weight:900;
+      letter-spacing:-.3px;
+    }
+    .home-chip{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(2,6,23,.04);
+      color:var(--muted2);
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .home-flow{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .home-flow li{
+      position:relative;
+      padding:12px 12px 12px 42px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:#f8fafc;
+      color:var(--muted2);
+      font-size:14px;
+    }
+    .home-flow li::before{
+      content:attr(data-n);
+      position:absolute;
+      left:12px;
+      top:12px;
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:#ffffff;
+      border:1px solid rgba(37,99,235,.22);
+      color:var(--blue2);
+      font-weight:900;
+      font-size:12px;
+    }
+    .home-panel-foot{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12.5px;
+    }
+
+    /* Sections */
+    .home-section{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding:0 2px;
+    }
+    .home-section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .home-section-head h2{
+      margin:0;
+      font-size:20px;
+      letter-spacing:-.3px;
+    }
+    .home-section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .home-steps{
+      display:grid;
+      gap:14px;
+      grid-template-columns:1fr;
+    }
+    @media (min-width: 880px){
+      .home-steps{ grid-template-columns:repeat(3,1fr); }
+    }
+    .home-step{
+      border:1px solid var(--border);
+      background:#ffffff;
+      border-radius:20px;
+      padding:18px;
+      box-shadow:var(--shadow-sm);
+    }
+    .home-step-top{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .home-step-num{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.18);
+      color:var(--blue2);
+      font-weight:900;
+    }
+    .home-step h3{
+      margin:0;
+      font-size:15px;
+      letter-spacing:-.2px;
+    }
+    .home-step p{
+      margin:0;
+      color:var(--muted2);
+      font-size:14px;
+    }
+
+    /* Bottom grid */
+    .home-split{
+      display:grid;
+      gap:14px;
+      grid-template-columns:1fr;
+    }
+    @media (min-width: 880px){
+      .home-split{ grid-template-columns: 1.15fr .85fr; }
+    }
+    .home-card{
+      border:1px solid var(--border);
+      background:#ffffff;
+      border-radius:20px;
+      padding:20px;
+      box-shadow:var(--shadow-sm);
+    }
+    .home-card h2{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:-.25px;
+    }
+    .home-card p{
+      margin:0;
+      color:var(--muted2);
+    }
+    .home-bullets{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+      color:var(--muted2);
+      font-size:14px;
+    }
+    .home-bullets li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .home-bullets .bullet{
+      width:10px;height:10px;border-radius:999px;
+      background:rgba(37,99,235,.45);
+      margin-top:6px;
+      flex:0 0 auto;
+    }
+
+    /* Final CTA */
+    .home-callout{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      border-radius:22px;
+      padding:18px 18px;
+      border:1px solid rgba(37,99,235,.18);
+      background:linear-gradient(135deg, rgba(37,99,235,.08), rgba(16,185,129,.06));
+    }
+    .home-callout h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.25px;
+    }
+    .home-callout p{
+      margin:4px 0 0;
+      color:var(--muted2);
+      font-size:14px;
+    }
+  </style>
 </head>
-<body>
-  <div class="container">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <div class="brand-title">
-          <strong>PR Collects</strong>
-          <span>AR collections • pay-by-link • reconciliation</span>
-        </div>
-      </div>
-      <nav class="nav" aria-label="Primary">
-        <a class="active" aria-current="page" href="/">Home</a>
-        <a href="/terms/">Terms</a>
-        <a href="/privacy/">Privacy</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="card hero">
-        <h1>Revolutionizing AR Collections</h1>
-        <p>
-          PR Collects turns open invoices into secure pay-by-link emails—automatically—so you get paid faster with fewer follow-ups.
-        </p>
-
-        <div class="badges" aria-label="Highlights">
-          <span class="badge"><b>Microsoft 365</b> Graph email sending</span>
-          <span class="badge"><b>Pay-by-link</b> hosted checkout</span>
-          <span class="badge"><b>ERP-ready</b> webhook reconciliation</span>
-        </div>
-
-        <div class="steps">
-          <div class="step">
-            <h3>1) Detect overdue items</h3>
-            <p>Read open AR items from your ERP/SQL and pick what needs action.</p>
-          </div>
-          <div class="step">
-            <h3>2) Send a payment link</h3>
-            <p>Email customers a secure hosted payment page with a fixed amount.</p>
-          </div>
-          <div class="step">
-            <h3>3) Reconcile automatically</h3>
-            <p>Use provider webhooks to mark invoices paid and update AR.</p>
-          </div>
-        </div>
-
-        <div class="cta">
-          <div>
-            <div style="font-weight:700">Want a demo?</div>
-            <small>We’ll start with one tenant + sandbox payments.</small>
-          </div>
-          <a class="btn" href="mailto:support@prcollects.com">Contact support</a>
-        </div>
-      </section>
-
-      <div class="grid">
-        <section class="card">
-          <h2>What we do</h2>
-          <p>
-            PR Collects helps brands get paid faster by automating payment-link delivery and tracking payment status—designed for real AR workflows and real accounting needs.
+<body class="home">
+<div class="container">
+<header class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="brand-mark"></div>
+<div class="brand-title">
+<strong>PR Collects</strong>
+<span>AR collections • pay-by-link • reconciliation</span>
+</div>
+</div>
+<nav class="nav">
+<a class="active" href="/">Home</a>
+<a href="/terms/">Terms</a>
+<a href="/privacy/">Privacy</a>
+</nav>
+</header>
+<main class="home-main">
+<section aria-label="PR Collects overview" class="home-hero">
+<div class="home-hero-grid">
+<div>
+<p class="home-eyebrow"><span aria-hidden="true" class="dot"></span> Automated AR collections</p>
+<h1>Revolutionizing AR Collections</h1>
+<p class="home-sub">PR Collects turns open invoices into secure pay‑by‑link emails—automatically—so you get paid faster with fewer follow‑ups.</p>
+<div class="home-actions">
+<a class="home-btn primary" href="mailto:support@prcollects.com?subject=PR%20Collects%20Demo%20Request">Request a demo</a>
+<a class="home-btn ghost" href="mailto:support@prcollects.com">Email support</a>
+</div>
+<ul aria-label="Key capabilities" class="home-checklist">
+<li><span aria-hidden="true" class="home-check">✓</span><span><b>Microsoft 365</b> Graph email sending (no shared mailbox passwords)</span></li>
+<li><span aria-hidden="true" class="home-check">✓</span><span><b>Pay‑by‑link</b> hosted checkout (payment details stay with your provider)</span></li>
+<li><span aria-hidden="true" class="home-check">✓</span><span><b>ERP‑ready</b> webhook reconciliation (clean status updates + audit trail)</span></li>
+</ul>
+</div>
+<aside aria-label="Collections flow" class="home-panel">
+<div class="home-panel-head">
+<div class="home-panel-title">Collections flow</div>
+<div class="home-chip">3 steps</div>
+</div>
+<ul class="home-flow">
+<li data-n="1"><b>Detect</b> overdue invoices from ERP/SQL and select what needs action.</li>
+<li data-n="2"><b>Send</b> a secure hosted payment link with the right amount &amp; memo.</li>
+<li data-n="3"><b>Reconcile</b> automatically via provider webhooks (paid → posted).</li>
+</ul>
+<div class="home-panel-foot">OAuth via Graph • Payments happen inside the provider’s hosted checkout</div>
+</aside>
+</div>
+</section>
+<section aria-label="How it works" class="home-section">
+<div class="home-section-head">
+<h2>How it works</h2>
+<p>Simple setup. Clean automation. Clear reconciliation.</p>
+</div>
+<div class="home-steps">
+<article class="home-step">
+<div class="home-step-top">
+<div class="home-step-num">1</div>
+<h3>Detect overdue items</h3>
+</div>
+<p>Read open AR items from your ERP/SQL and pick what needs action.</p>
+</article>
+<article class="home-step">
+<div class="home-step-top">
+<div class="home-step-num">2</div>
+<h3>Send a payment link</h3>
+</div>
+<p>Email customers a secure hosted payment page with a fixed amount.</p>
+</article>
+<article class="home-step">
+<div class="home-step-top">
+<div class="home-step-num">3</div>
+<h3>Reconcile automatically</h3>
+</div>
+<p>Use provider webhooks to mark invoices paid and update AR.</p>
+</article>
+</div>
+</section>
+<section aria-label="What we do and security" class="home-split">
+<div class="home-card">
+<h2>What we do</h2>
+<p>
+            PR Collects helps brands get paid faster by automating payment‑link delivery and tracking payment status—designed for real AR workflows and real accounting needs.
           </p>
-        </section>
-
-        <section class="card">
-          <h2>Security</h2>
-          <p>
-            No mailbox passwords shared (Graph OAuth). Payments happen inside the payment provider’s hosted checkout.
-          </p>
-        </section>
-      </div>
-    </main>
-
-    <footer class="footer">
+</div>
+<div class="home-card">
+<h2>Security</h2>
+<ul class="home-bullets">
+<li><span aria-hidden="true" class="bullet"></span><span>No mailbox passwords shared (Graph OAuth).</span></li>
+<li><span aria-hidden="true" class="bullet"></span><span>Payments happen inside the payment provider’s hosted checkout.</span></li>
+<li><span aria-hidden="true" class="bullet"></span><span>Webhook reconciliation supports clean AR updates and auditing.</span></li>
+</ul>
+</div>
+</section>
+<section aria-label="Demo call to action" class="home-callout">
+<div>
+<h2>Want a demo?</h2>
+<p>We’ll start with one tenant + sandbox payments.</p>
+</div>
+<a class="home-btn primary" href="mailto:support@prcollects.com?subject=PR%20Collects%20Demo%20Request">Contact support</a>
+</section>
+</main>
+<footer class="footer">
       © <span id="y"></span> PR Collects • <a href="/privacy/">Privacy</a> • <a href="/terms/">Terms</a>
-    </footer>
-  </div>
-
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</footer>
+</div>
+<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>
