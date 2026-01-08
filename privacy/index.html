@@ -7,17 +7,29 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <main class="wrap">
-    <header class="card">
-      <h1>Privacy Policy</h1>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-title">
+          <strong>PR Collects</strong>
+          <span>Privacy Policy</span>
+        </div>
+      </div>
       <nav class="nav">
         <a href="/">Home</a>
-        <a href="/index.html">Terms</a>
+        <a href="/terms/">Terms</a>
+        <a class="active" href="/privacy/">Privacy</a>
       </nav>
     </header>
 
     <section class="card prose">
-      <p>PR Collects processes limited business data to help merchants send invoice/payment-link emails and reconcile payment status.</p>
+      <h1>Privacy Policy</h1>
+      <p><small>Effective date: 2026-01-07</small></p>
+
+      <p>
+        PR Collects processes limited business data to help merchants send invoice/payment-link emails and reconcile payment status.
+      </p>
 
       <h2>Information we process</h2>
       <ul>
@@ -28,16 +40,33 @@
       </ul>
 
       <h2>Payment information</h2>
-      <p>PR Collects does not store full card numbers. Payment details are collected and processed securely by the merchant’s payment provider.</p>
+      <p>
+        PR Collects does not store full card numbers. Payment details are entered and processed in the merchant’s payment provider environment.
+      </p>
+
+      <h2>How we use information</h2>
+      <ul>
+        <li>Generate and send invoice/payment-link emails on behalf of merchants</li>
+        <li>Track payment status and reconcile invoice records</li>
+        <li>Provide support, troubleshooting, and audit logs</li>
+        <li>Protect the service against abuse and security threats</li>
+      </ul>
 
       <h2>Sharing</h2>
-      <p>We may share data with service providers needed to operate the platform and with the merchant’s payment provider for payment processing. We do not sell personal information.</p>
+      <p>
+        We may share data with service providers needed to operate the platform and with the merchant’s payment provider for payment processing.
+        We do not sell personal information.
+      </p>
 
       <h2>Contact</h2>
       <p>Privacy questions: <a href="mailto:support@prcollects.com">support@prcollects.com</a></p>
-
-      <p class="muted">Effective date: 2026-01-07</p>
     </section>
-  </main>
+
+    <footer class="footer">
+      © <span id="y"></span> PR Collects
+    </footer>
+  </div>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>

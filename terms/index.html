@@ -7,32 +7,59 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <main class="wrap">
-    <header class="card">
-      <h1>Terms of Service</h1>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-title">
+          <strong>PR Collects</strong>
+          <span>Terms of Service</span>
+        </div>
+      </div>
       <nav class="nav">
         <a href="/">Home</a>
-        <a href="/index.html">Privacy</a>
+        <a class="active" href="/terms/">Terms</a>
+        <a href="/privacy/">Privacy</a>
       </nav>
     </header>
 
     <section class="card prose">
-      <p>PR Collects provides software that helps merchants send payment-enabled invoice links and track payment status for accounts receivable.</p>
+      <h1>Terms of Service</h1>
+      <p><small>Effective date: 2026-01-07</small></p>
 
-      <h2>Payments and Processing</h2>
-      <p>PR Collects is not a bank or payment processor. Payments are processed by the merchant’s selected payment provider and are subject to that provider’s terms. PR Collects does not store full card numbers.</p>
+      <p>
+        PR Collects (“we”, “us”) provides software that helps merchants send payment-enabled invoice links to their customers
+        and track payment status for accounts receivable.
+      </p>
 
-      <h2>Use of the Service</h2>
-      <p>You agree to use PR Collects only for lawful business purposes and not to send deceptive content, attempt unauthorized access, or interfere with the service’s security.</p>
+      <h2>Payments and processing</h2>
+      <p>
+        PR Collects is not a bank or payment processor. Payments are processed by the merchant’s selected payment provider
+        (e.g., KORT/PayHQ/Payfirma) and are subject to that provider’s terms. PR Collects does not store full card numbers.
+      </p>
+
+      <h2>Acceptable use</h2>
+      <p>You agree to use PR Collects only for lawful business purposes and not to:</p>
+      <ul>
+        <li>send deceptive, unlawful, or abusive content,</li>
+        <li>attempt unauthorized access to accounts or systems, or</li>
+        <li>interfere with the security or performance of the service.</li>
+      </ul>
 
       <h2>Availability</h2>
-      <p>We aim for reliable service, but availability may be impacted by maintenance, updates, or events outside our control.</p>
+      <p>
+        We aim for reliable service, but availability may be impacted by maintenance, updates, or events outside our control.
+      </p>
 
       <h2>Contact</h2>
       <p>Support: <a href="mailto:support@prcollects.com">support@prcollects.com</a></p>
-
-      <p class="muted">Effective date: 2026-01-07</p>
     </section>
-  </main>
+
+    <footer class="footer">
+      © <span id="y"></span> PR Collects
+    </footer>
+  </div>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>
