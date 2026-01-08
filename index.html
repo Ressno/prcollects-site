@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
   <title>PR Collects</title>
   <meta name="description" content="PR Collects helps brands collect AR faster by emailing secure pay-by-link invoices and tracking payment status end-to-end." />
   <link rel="stylesheet" href="/style.css" />
@@ -17,64 +18,66 @@
           <span>AR collections • pay-by-link • reconciliation</span>
         </div>
       </div>
-      <nav class="nav">
-        <a class="active" href="/">Home</a>
+      <nav class="nav" aria-label="Primary">
+        <a class="active" aria-current="page" href="/">Home</a>
         <a href="/terms/">Terms</a>
         <a href="/privacy/">Privacy</a>
       </nav>
     </header>
 
-    <section class="card hero">
-      <h1>Revolutionizing AR Collections</h1>
-      <p>
-        PR Collects turns open invoices into secure pay-by-link emails—automatically—so you get paid faster with fewer follow-ups.
-      </p>
-
-      <div class="badges" aria-label="Highlights">
-        <span class="badge"><b>Microsoft 365</b> Graph email sending</span>
-        <span class="badge"><b>Pay-by-link</b> hosted checkout</span>
-        <span class="badge"><b>ERP-ready</b> webhook reconciliation</span>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <h3>1) Detect overdue items</h3>
-          <p>Read open AR items from your ERP/SQL and pick what needs action.</p>
-        </div>
-        <div class="step">
-          <h3>2) Send a payment link</h3>
-          <p>Email customers a secure hosted payment page with a fixed amount.</p>
-        </div>
-        <div class="step">
-          <h3>3) Reconcile automatically</h3>
-          <p>Use provider webhooks to mark invoices paid and update AR.</p>
-        </div>
-      </div>
-
-      <div class="cta">
-        <div>
-          <div style="font-weight:700">Want a demo?</div>
-          <small>We’ll start with one tenant + sandbox payments.</small>
-        </div>
-        <a class="btn" href="mailto:support@prcollects.com">Contact support</a>
-      </div>
-    </section>
-
-    <div class="grid">
-      <section class="card">
-        <h2 style="margin:0 0 8px;">What we do</h2>
-        <p style="margin:0;color:var(--muted2);">
-          PR Collects helps brands get paid faster by automating payment-link delivery and tracking payment status—designed for real AR workflows and real accounting needs.
+    <main>
+      <section class="card hero">
+        <h1>Revolutionizing AR Collections</h1>
+        <p>
+          PR Collects turns open invoices into secure pay-by-link emails—automatically—so you get paid faster with fewer follow-ups.
         </p>
+
+        <div class="badges" aria-label="Highlights">
+          <span class="badge"><b>Microsoft 365</b> Graph email sending</span>
+          <span class="badge"><b>Pay-by-link</b> hosted checkout</span>
+          <span class="badge"><b>ERP-ready</b> webhook reconciliation</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <h3>1) Detect overdue items</h3>
+            <p>Read open AR items from your ERP/SQL and pick what needs action.</p>
+          </div>
+          <div class="step">
+            <h3>2) Send a payment link</h3>
+            <p>Email customers a secure hosted payment page with a fixed amount.</p>
+          </div>
+          <div class="step">
+            <h3>3) Reconcile automatically</h3>
+            <p>Use provider webhooks to mark invoices paid and update AR.</p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div style="font-weight:700">Want a demo?</div>
+            <small>We’ll start with one tenant + sandbox payments.</small>
+          </div>
+          <a class="btn" href="mailto:support@prcollects.com">Contact support</a>
+        </div>
       </section>
 
-      <section class="card">
-        <h2 style="margin:0 0 8px;">Security</h2>
-        <p style="margin:0;color:var(--muted2);">
-          No mailbox passwords shared (Graph OAuth). Payments happen inside the payment provider’s hosted checkout.
-        </p>
-      </section>
-    </div>
+      <div class="grid">
+        <section class="card">
+          <h2>What we do</h2>
+          <p>
+            PR Collects helps brands get paid faster by automating payment-link delivery and tracking payment status—designed for real AR workflows and real accounting needs.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>Security</h2>
+          <p>
+            No mailbox passwords shared (Graph OAuth). Payments happen inside the payment provider’s hosted checkout.
+          </p>
+        </section>
+      </div>
+    </main>
 
     <footer class="footer">
       © <span id="y"></span> PR Collects • <a href="/privacy/">Privacy</a> • <a href="/terms/">Terms</a>
